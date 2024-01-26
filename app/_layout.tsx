@@ -3,6 +3,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { usePathname, useGlobalSearchParams, Slot } from 'expo-router';
 import { useEffect } from 'react';
 
 import { useColorScheme } from '@/components/useColorScheme';
@@ -41,6 +42,12 @@ export default function RootLayout() {
     return null;
   }
 
+  // const pathname = usePathname();
+  // const params = useGlobalSearchParams();
+  // useEffect(() => {
+  //   console.log('pathname', pathname);
+  //   console.log('params', params);
+  // }, [pathname, params]);
   return <RootLayoutNav />;
 }
 
@@ -50,7 +57,8 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="screens/home" options={{ headerShown: false }} />
+        {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
     </ThemeProvider>
